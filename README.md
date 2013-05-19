@@ -1,4 +1,7 @@
-rokko-mvc
+Rokko MVC
 =========
 
-A PHP MVC Framework
+An awesome PHP MVC Framework designed with simplicity and efficiency in mind.
+
+Framework goals:
+
