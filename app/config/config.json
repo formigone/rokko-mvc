@@ -1,0 +1,7 @@
+{
+   "app_root" : "rokko-mvc",
+	"view_path" : ".",
+	"view_extension" : "php",
+	"layout_path" : ".",
+	"layout_extension" : "php"
+}
