@@ -9,7 +9,10 @@ require_once(BIN_PATH."/Autoloader.php");
 // TODO: RokkoApp controls controller life cycle
 // TODO: Design controller class
 // TODO: Design database class
-$app = new \Rokko\App();
-$req = new \Rokko\Request($_SERVER);
-$ctr = new IndexController();
-echo $ctr->test();
+$config = json_decode(file_get_contents(APP_PATH."/config/config.json"), true);
+$app = new \Rokko\App(
+		new \Rokko\Request($_SERVER, $config),
+		new \Rokko\Response($config),
+		$config
+		);
+$app->run();
