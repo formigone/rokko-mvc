@@ -3,14 +3,16 @@ namespace Rokko;
 
 class App {
 	protected $version = "1.0.0";
-	protected $config;
+	protected $appConfig;
+	protected $rokkoConfig;
 	protected $request;
 	protected $respose;
 
-	public function __construct(Request $request, Response $response, Array $config) {
+	public function __construct(Request $request, Response $response, Array $appConfig, Array $rokkoConfig) {
 		$this->request = $request;
 		$this->respose = $response;
-		$this->config = $config;
+		$this->appConfig = $appConfig;
+		$this->rokkoConfig = $rokkoConfig;
 	}
 
 	public function getVersion() {
@@ -18,8 +20,13 @@ class App {
 	}
 
 	public function run() {
-		// Use config to determine controller namespace
-		$controllerClass = $this->getController($this->request->getController());
+		// Use app config to determine controller namespace
+		$namespace = "";
+		if (isset($this->appConfig["controller_namespace"]) && $this->appConfig["controller_namespace"] != "") {
+			$namespace = "\\{$this->appConfig["controller_namespace"]}\\";
+		}
+
+		$controllerClass = $namespace.$this->getController($this->request->getController());
 		$controller = new $controllerClass($this->request, $this->respose);
 		$action = $this->getAction($this->request->getAction());
 
@@ -39,10 +46,10 @@ class App {
 	}
 
 	protected function getController($uri) {
-		return $this->convertUriComponent($uri)."Controller";
+		return $this->convertUriComponent($uri).$this->rokkoConfig["controller_class_postfix"];
 	}
 
 	protected function getAction($uri) {
-		return $this->convertUriComponent($uri)."Exec";
+		return $this->convertUriComponent($uri).$this->rokkoConfig["controller_action_postfix"];
 	}
 }
