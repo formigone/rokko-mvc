@@ -15,6 +15,4 @@ Framework features:
  * Heavily documented with PHPDocs
  * Build using Test Driven Development, giving the framework a higher degree of reliability, confidence, and predictability
 
-Author: Rodrigo Formigone Silveira
-
-Website: http://www.rodrigo-silveira.com
+@Author Rodrigo Formigone Silveira http://www.rodrigo-silveira.com
