@@ -36,6 +36,10 @@ class Profiler {
 	}
 
 	public function getAverage($format = self::SECONDS) {
+		if ($this->microSum == 0) {
+			return -1;
+		}
+
 		switch ($format) {
 			case self::SECONDS:
 				return number_format($this->microSum / $this->count, 4);
@@ -61,7 +65,7 @@ class Profiler {
 		}
 	}
 
-	public function getCount($format) {
+	public function getCount() {
 		return $this->count;
 	}
 }
