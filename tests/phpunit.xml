@@ -1,0 +1,12 @@
+<phpunit colors="true" strict="true" verbose="true">
+	<testsuites>
+		<testsuite name="RokkoMVC">
+			<directory>./bin</directory>
+		</testsuite>
+	</testsuites>
+	<filter>
+		<whitelist>
+			<directory suffix=".php">./bin</directory>
+		</whitelist>
+	</filter>
+</phpunit>
