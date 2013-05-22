@@ -1,5 +1,6 @@
 Rokko MVC
 =========
+@Author Rodrigo Formigone Silveira http://www.rodrigo-silveira.com
 
 An awesome PHP MVC Framework designed with simplicity and efficiency in mind.
 
@@ -14,5 +15,3 @@ Framework features:
  * Easily configured from a single configuration file
  * Heavily documented with PHPDocs
  * Build using Test Driven Development, giving the framework a higher degree of reliability, confidence, and predictability
-
-@Author Rodrigo Formigone Silveira http://www.rodrigo-silveira.com
