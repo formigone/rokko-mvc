@@ -12,6 +12,9 @@ Framework features:
  * Very, very modular
  * Models, controllers, and custom libraries can be namespaced and still get autoloaded
  * Easily configured from a single configuration file
+ * Heavily documented with PHPDocs
+ * Build using Test Driven Development, giving the framework a higher degree of reliability, confidence, and predictability
 
 Author: Rodrigo Formigone Silveira
+
 Website: http://www.rodrigo-silveira.com
