@@ -2,16 +2,18 @@
 namespace Rokko;
 
 class Request {
-   protected $params;
    protected $controller;
    protected $action;
+   protected $params;
    protected $userAgent;
    protected $server;
-   protected $config;
+   protected $appConfig;
+   protected $rokkoConfig;
 
-   public function __construct(Array $server, Array $config) {
+   public function __construct(Array $server, Array $appConfig, Array $rokkoConfig) {
    	$this->server = $server;
-   	$this->config = $config;
+   	$this->appConfig = $appConfig;
+   	$this->rokkoConfig = $rokkoConfig;
 
    	$this->controller = null;
       $this->action = null;
@@ -28,15 +30,14 @@ class Request {
       $offset = 1;
 
       if ($uriLen > 1) {
-      	if ($this->config["app_root"] == $uri[1]) {
+      	if ($this->appConfig["app_root"] == $uri[1]) {
       		$offset = 2;
       	}
 
       	$this->controller = $uri[$offset];
       } else {
-      	if ($this->config["app_root"] == $uri[0]) {
-      		// TODO: Get app default controller
-      		$this->controller = "index";
+      	if ($this->appConfig["app_root"] == $uri[0]) {
+      		$this->controller = $this->rokkoConfig["default_controller_action"];
       	} else {
 	      	$this->controller = $uri[0];
       	}

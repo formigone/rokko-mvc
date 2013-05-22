@@ -1,5 +1,6 @@
 {
    "app_root" : "rokko-mvc",
+   "controller_namespace" : "",
 	"view_path" : ".",
 	"view_extension" : "php",
 	"layout_path" : ".",
