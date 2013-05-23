@@ -1,4 +1,5 @@
 {
+   "base_namespace" : "Rokko",
    "default_controller_action" : "index",
    "controller_class_postfix" : "Controller",
    "controller_action_postfix" : "Exec"
