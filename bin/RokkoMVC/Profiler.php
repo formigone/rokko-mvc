@@ -36,36 +36,37 @@ class Profiler {
 	}
 
 	public function getAverage($format = self::SECONDS) {
-		if ($this->microSum == 0) {
+		if ($this->count == 0) {
 			return -1;
 		}
 
 		switch ($format) {
 			case self::SECONDS:
-				return number_format($this->microSum / $this->count, 4);
+				return number_format($this->microSum / $this->count, 4, ".", "");
 			case self::MINUTES:
-				return number_format($this->microSum / $this->count / 60, 4);
+				return number_format($this->microSum / $this->count / 60, 4, ".", "");
 			case self::HOURS:
-				return number_format($this->microSum / $this->count / 60 / 60, 4);
+				return number_format($this->microSum / $this->count / 60 / 60, 4, ".", "");
 			case self::TIME:
-				return $this->formatHour($this->microSum);
+				$sec = number_format($this->microSum / $this->count, 4, ".", "");
+				return $this->formatHour($sec);
 			default:
-				return number_format($this->microSum / $this->count, 4);
+				return number_format($this->microSum / $this->count, 4, ".", "");
 		}
 	}
 
 	public function getTotal($format = self::SECONDS) {
 		switch ($format) {
 			case self::SECONDS:
-				return number_format($this->microSum, 4);
+				return number_format($this->microSum, 4, ".", "");
 			case self::MINUTES:
-				return number_format($this->microSum / 60, 4);
+				return number_format($this->microSum / 60, 4, ".", "");
 			case self::HOURS:
-				return number_format($this->microSum / 60 / 60, 4);
+				return number_format($this->microSum / 60 / 60, 4, ".", "");
 			case self::TIME:
 				return $this->formatHour($this->microSum);
 			default:
-				return number_format($this->microSum, 4);
+				return number_format($this->microSum, 4, ".", "");
 		}
 	}
 
@@ -74,7 +75,7 @@ class Profiler {
 	}
 
 	private function formatHour($seconds) {
-		$s = (int)$seconds;
+		$s = round($seconds);
 		$h = (int)($s / 60 / 60);
 		$m = (int)(($s - $h * 60 * 60) / 60);
 		$s = $s - ($m * 60) - ($h * 60 * 60);
