@@ -1,1 +1,8 @@
-Deny From All
+Options +FollowSymLinks
+RewriteEngine on
+RewriteBase /rokko-mvc
+
+RewriteCond %{DOCUMENT_ROOT}/%1 -f
+RewriteRule .+ - [L]
+
+RewriteRule ^(.*)$ index.php

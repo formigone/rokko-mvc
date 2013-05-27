@@ -21,7 +21,7 @@ class Response {
 
 	private function loadView($view, $data) {
 		if (!file_exists($view)) {
-			throw new \Exception("View not found");
+			throw new \Exception("View {$view} not found");
 		}
 
 		// Convert data into object so items can be accessed with -> operator

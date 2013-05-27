@@ -16,5 +16,6 @@ class AppController extends \Rokko\Controller {
 
 		$resp = $this->getResponse();
 		$resp->setLayout("main");
+		$resp->setView("index/index");
 	}
 }
