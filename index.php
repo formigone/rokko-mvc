@@ -5,6 +5,7 @@ define("APP_PATH", realpath(__DIR__)."/app");
 
 require_once(BIN_PATH."/Autoloader.php");
 
+// TODO: Fix htaccess so app files can't be accessed directly or externally at all
 // TODO: RokkoApp controls controller life cycle
 // TODO: Design controller class
 // TODO: Design database class

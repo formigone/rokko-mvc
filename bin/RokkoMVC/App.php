@@ -6,11 +6,11 @@ class App {
 	protected $appConfig;
 	protected $rokkoConfig;
 	protected $request;
-	protected $respose;
+	protected $response;
 
 	public function __construct(Request $request, Response $response, Array $appConfig, Array $rokkoConfig) {
 		$this->request = $request;
-		$this->respose = $response;
+		$this->response = $response;
 		$this->appConfig = $appConfig;
 		$this->rokkoConfig = $rokkoConfig;
 	}
@@ -27,11 +27,12 @@ class App {
 		}
 
 		$controllerClass = $namespace.$this->getController($this->request->getController());
-		$controller = new $controllerClass($this->request, $this->respose);
+		$controller = new $controllerClass($this->request, $this->response);
 		$action = $this->getAction($this->request->getAction());
 
 		$controller->init();
 		$controller->$action();
+		$this->response->render();
 	}
 
 	protected function convertUriComponent($uri) {

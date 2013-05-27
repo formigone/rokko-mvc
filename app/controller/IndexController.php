@@ -1,6 +1,7 @@
 <?php
 class IndexController extends \Rokko\Controller {
 	public function indexExec() {
-		echo "Here!";
+		$resp = $this->getResponse();
+		$resp->setLayout("main");
 	}
 }
