@@ -5,7 +5,7 @@
 <title>RokkoMVC &reg;</title>
 </head>
 <body>
-<img src="/<?= $_this->app_root; ?>/rec/img/logo.png" />
+<img src="<?= $_helper->view->rootPath("rec/img/logo.png"); ?>" />
 <hr/>
 <?= $data->viewContents; ?>
 </body>

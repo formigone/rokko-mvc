@@ -11,6 +11,7 @@ class Response {
 	public function __construct($config) {
 		$this->config = $config;
 		$this->defaultViewValues = $config["app_root"];
+		$this->data = array();
 	}
 
 	public function getView($view, $data) {
@@ -26,9 +27,12 @@ class Response {
 		// Convert data into object so items can be accessed with -> operator
 		if (is_array($data)) {
 			$obj = new \stdClass();
+
 			if (array_key_exists("config", $data)) {
+				$obj->config = new \stdClass();
+
 				foreach ($data["config"] as $key => $val) {
-					$obj->$key = $val;
+					$obj->config->$key = $val;
 				}
 
 				unset($data["config"]);
@@ -41,7 +45,9 @@ class Response {
 			$data = $obj;
 		}
 
-		$_this = $data;
+		$_helper = new \stdClass();
+		$_helper->view = new ViewHelper($this->config);
+
 		ob_start();
 		require_once($view);
 		return ob_get_clean();
@@ -61,7 +67,7 @@ class Response {
 		$this->layout = $layout;
 	}
 
-	public function setViewData($data) {
-		$this->data = $data;
+	public function addViewData($key, $val) {
+		$this->data[$key] = $val;
 	}
 }

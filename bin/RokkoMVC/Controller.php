@@ -18,6 +18,10 @@ abstract class Controller {
 		return $this->response;
 	}
 
+	public function setData($key, $val) {
+		$this->response->addViewData($key, $val);
+	}
+
 	public function init() {
 		// Set default view
 		$defView = $this->request->getController()."/".$this->request->getAction();
