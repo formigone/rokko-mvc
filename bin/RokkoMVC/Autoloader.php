@@ -2,7 +2,6 @@
 namespace Rokko;
 
 class Autoloader {
-//	const DEFAULT_CLASS_PREFIX = "Rokko_";
 	private $toLoad;
 	private $base_namespace;
 
@@ -13,19 +12,7 @@ class Autoloader {
 		spl_autoload_register(array($this, "loadAppClasses"));
 	}
 
-	// TODO: Load the right file within subdirectories
 	public function loadStdClasses($class) {
-/* 		$parts = explode("\\", $class);
-		$path = $class;
-
-		// Load standard RokkoMVC class
-		if (count($parts) > 1 && $parts[0]."_" == self::DEFAULT_CLASS_PREFIX) {
-			$filename = str_replace(self::DEFAULT_CLASS_PREFIX, "", $parts[1]);
-			$path = BIN_PATH."/{$filename}.php";
-		}
-
-		self::load($path, $class);
- */
 		$file = str_replace($this->base_namespace, "", $class);
 		$file = str_replace("\\", DIRECTORY_SEPARATOR, $file);
 		$this->load(BIN_PATH."/{$file}.php");
