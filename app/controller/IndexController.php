@@ -1,26 +1,42 @@
 <?php
 
 class IndexController extends \Rokko\Controller {
+	/**
+	 * (non-PHPdoc)
+	 * @see \Rokko\Controller::init()
+	 */
 	public function init() {
 		parent::init();
 		$resp = $this->getResponse();
 		$resp->setLayout("main");
 	}
 
+	/**
+	 * 
+	 */
 	public function indexExec() {
-		$this->setData("name", "Rodrigo");
-
-		$items = array(
-				"Build Database abstraction",
-				"Use Database module",
-				"Buy domain for framework",
-				"Document framework",
-				"Outline book",
-				"Contact Packt"
-			);
-
 		$mTasks = new Tasks($this->getContext());
+		$request = $this->getRequest();
+
+		if ($request->isPost()) {
+			$task = $request->getParam("task");
+			$mTasks->saveTask($task);
+			$this->getResponse()->redirect();
+		}
+
 		$items = $mTasks->getTasks();
 		$this->setData("todo", $items);
+	}
+
+	/**
+	 * 
+	 */
+	public function deleteExec() {
+		$mTasks = new Tasks($this->getContext());
+		$request = $this->getRequest();
+		$id = $request->getParam("task");
+
+		$mTasks->deleteTask($id);
+		$this->getResponse()->redirect("/rokko-mvc");
 	}
 }

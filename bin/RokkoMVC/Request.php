@@ -24,7 +24,9 @@ class Request {
    }
 
    protected function init() {
-      $uri = trim(trim($this->server["REQUEST_URI"]), "/");
+   	$this->getRequestData();
+
+   	$uri = trim(trim($this->server["REQUEST_URI"]), "/");
       $uri = explode("/", $uri);
       $uriLen = count($uri);
       $offset = 1;
@@ -61,6 +63,20 @@ class Request {
       }
    }
 
+   private function getRequestData() {
+   	foreach ($_REQUEST as $key => $val) {
+   		$this->params[$key] = $val;
+   	}
+   }
+
+   public function isPost() {
+   	return count($_POST) > 0;
+   }
+
+   public function isGet() {
+   	return !$this->isPost();
+   }
+
    public function isMobile() {
       return false;
    }
@@ -70,7 +86,7 @@ class Request {
    }
 
    public function getParam($param) {
-      if (!in_array($param, $this->params)) {
+      if (!array_key_exists($param, $this->params)) {
          return null;
       }
 

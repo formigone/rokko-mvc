@@ -5,11 +5,9 @@
 <title>RokkoMVC &reg;</title>
 </head>
 <body>
-	<img src="<?= $_helper->view->rootPath("res/img/logo.png"); ?>" />
-	<p>
-		App Root:
-		<?= $data->config->app_root; ?>
-	</p>
+	<a href="<?= $_helper->view->rootPath(""); ?>"> 
+		<img src="<?= $_helper->view->rootPath("res/img/logo.png"); ?>" />
+	</a>
 	<hr />
 	<?= $data->viewContents; ?>
 </body>

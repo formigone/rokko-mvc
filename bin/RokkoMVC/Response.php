@@ -70,4 +70,8 @@ class Response {
 	public function addViewData($key, $val) {
 		$this->data[$key] = $val;
 	}
+
+	public function redirect($url = ".") {
+		header("Location: {$url}");
+	}
 }
