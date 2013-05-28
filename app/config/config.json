@@ -5,5 +5,11 @@
 	"view_path" : "view",
 	"view_extension" : "php",
 	"layout_path" : "template",
-	"layout_extension" : "php"
+	"layout_extension" : "php",
+	"default_database" : {
+	     "host" : "localhost",
+	     "database" : "rokko_mvc",
+	     "username" : "root",
+	     "password" : ""
+     }
 }

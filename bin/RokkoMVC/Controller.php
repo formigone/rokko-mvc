@@ -4,10 +4,12 @@ namespace Rokko;
 abstract class Controller {
 	private $request;
 	private $response;
+	private $context;
 
-	public function __construct(Request $request, Response $response) {
+	public function __construct(Request $request, Response $response, App $context) {
 		$this->request = $request;
 		$this->response = $response;
+		$this->context = $context;
 	}
 
 	public function getRequest() {
@@ -16,6 +18,10 @@ abstract class Controller {
 
 	public function getResponse() {
 		return $this->response;
+	}
+
+	public function getContext() {
+		return $this->context;
 	}
 
 	public function setData($key, $val) {

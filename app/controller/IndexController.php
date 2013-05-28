@@ -1,4 +1,5 @@
 <?php
+
 class IndexController extends \Rokko\Controller {
 	public function init() {
 		parent::init();
@@ -18,6 +19,8 @@ class IndexController extends \Rokko\Controller {
 				"Contact Packt"
 			);
 
+		$mTasks = new Tasks($this->getContext());
+		$items = $mTasks->getTasks();
 		$this->setData("todo", $items);
 	}
 }
