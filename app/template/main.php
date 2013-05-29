@@ -2,6 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8" />
+<link rel="shortcut icon" href="<?= $_helper->view->rootPath("res/favicon/favicon.ico"); ?>" />
 <title>RokkoMVC &reg;</title>
 </head>
 <body>

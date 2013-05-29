@@ -7,6 +7,7 @@ abstract class Database {
 	protected $username;
 	protected $password;
 	protected $conn;
+	protected $isError;
 
 	/**
 	 * 
@@ -17,6 +18,16 @@ abstract class Database {
 		$this->username = $appConfig["username"];
 		$this->password = $appConfig["password"];
 		$this->database = $appConfig["database"];
+		$this->conn = null;
+		$this->isError = false;
+	}
+
+	public function isConnected() {
+		return $this->conn == null;
+	}
+
+	public function isConnectionError() {
+		return $this->isError;
 	}
 
 	/**
@@ -25,7 +36,12 @@ abstract class Database {
 	 * @param string $options
 	 */
 	protected function connect($adapter, $options = null) {
-		$this->conn = new \PDO("{$adapter}:host={$this->host};dbname={$this->database}", $this->username, $this->password, $options);
+		try {
+			$this->conn = new \PDO("{$adapter}:host={$this->host};dbname={$this->database}", $this->username, $this->password, $options);
+		} catch (\Exception $e) {
+			$this->isError = true;
+			error_log($e->getMessage().$e->getTraceAsString(), 0);
+		}
 	}
 
 	/**
@@ -36,6 +52,10 @@ abstract class Database {
 	 * @return multitype:
 	 */
 	public function query($query, $params = null, $fetchMode = \PDO::FETCH_ASSOC) {
+		if ($this->conn == null) {
+			return false;
+		}
+
 		$stmt = $this->conn->prepare($query);
 		$stmt->execute($params);
 		return $stmt->fetchAll($fetchMode);

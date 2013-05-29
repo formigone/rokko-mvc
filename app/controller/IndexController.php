@@ -15,7 +15,7 @@ class IndexController extends \Rokko\Controller {
 	 * 
 	 */
 	public function indexExec() {
-		$mTasks = new Tasks($this->getContext());
+		$mTasks = new TasksService($this->getContext());
 		$request = $this->getRequest();
 
 		if ($request->isPost()) {
@@ -32,7 +32,7 @@ class IndexController extends \Rokko\Controller {
 	 * 
 	 */
 	public function deleteExec() {
-		$mTasks = new Tasks($this->getContext());
+		$mTasks = new TasksService($this->getContext());
 		$request = $this->getRequest();
 		$id = $request->getParam("task");
 

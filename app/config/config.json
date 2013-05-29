@@ -1,6 +1,6 @@
 {
    "app_root" : "rokko-mvc",
-   "autoload_directories" : ["model", "controller", "lib"],
+   "autoload_directories" : ["controller", "service", "repository", "lib"],
    "controller_namespace" : "",
 	"view_path" : "view",
 	"view_extension" : "php",
