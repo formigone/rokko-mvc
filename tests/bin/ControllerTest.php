@@ -1,6 +1,5 @@
 <?php
-require_once("./PHPUnit/Autoload.php");
-require_once("./bootstrap.php");
+require_once(dirname(__FILE__) ."/../bootstrap.php");
 
 class RokkoMVC_ControllerTest extends PHPUnit_Framework_TestCase {
 	public function testSetup_shouldPassTrivial() {
