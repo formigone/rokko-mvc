@@ -4,6 +4,8 @@ Rokko MVC
 
 An awesome PHP MVC Framework designed with simplicity and efficiency in mind.
 
+[![Build Status](https://travis-ci.org/formigone/rokko-mvc.png?branch=master)](https://travis-ci.org/formigone/rokko-mvc)
+
 ### Framework goals
  * Provide a light-weight, flexible, and secure application framework
  * Provide an elegant way to organize application code - multiple applications can share the framework's core libraries
